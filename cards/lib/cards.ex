@@ -33,6 +33,21 @@ defmodule Cards do
     Enum.split(deck, amount)
   end
 
-  # pattern matching
+  def save(deck, path) do
+    binary = :erlang.term_to_binary(deck)
+    File.write(path, binary)
+  end
+
+  def load(path) do
+    case File.read(path) do
+      {:ok, binary} -> :erlang.binary_to_term(binary)
+      {:error, _reason} -> "File doesnt exist" 
+    end
+  end
   
+  def create_hand(size) do
+    Cards.create_deck
+    |> Cards.shuffle
+    |> Cards.deal(size)
+  end
 end
