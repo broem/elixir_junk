@@ -1,16 +1,10 @@
 defmodule Cards do
   @moduledoc """
-  Documentation for Cards.
+  Deck of Cards.
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Cards.hello()
-      :world
-
+  Returns list of strings as deck of cards
   """
   def create_deck do
     values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
@@ -29,6 +23,17 @@ defmodule Cards do
     Enum.member?(deck, card)
   end
 
+  @doc """
+    Deals some cards given a `deck` and `amount`
+
+  ## Examples 
+
+      iex> deck = Cards.create_deck
+      iex> {hand, deck} = Cards.deal(deck, 1)
+      iex> hand
+      ["Ace of Spades"]
+
+  """
   def deal(deck, amount) do
     Enum.split(deck, amount)
   end
